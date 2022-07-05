@@ -39,18 +39,16 @@ public:
     string s;
     for (int i = 1; i < path.size(); i++) {
       if (path[i] == '/') {
-        if (s.size() != 0) {
-          if (s.size() == 1 && s[0] == '.') {
-            s.clear();
-            continue;
-          } else if (s == "..") {
-            if (directories.size())
-              directories.pop_back();
-
-          } else
-            directories.push_back(s);
+        if (s.size()) {
+          if (s != ".") {
+            if (s == "..") {
+              if (directories.size())
+                directories.pop_back();
+            } else
+              directories.push_back(s);
+          }
+          s.clear();
         }
-        s.clear();
 
       } else {
         s += path[i];
