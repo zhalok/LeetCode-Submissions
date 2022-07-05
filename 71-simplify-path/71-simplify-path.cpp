@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include <string>
+#include <system_error>
 #include <vector>
 using namespace std;
 using namespace std;
@@ -34,7 +35,7 @@ public:
   string simplifyPath(string path) {
     path += '/';
     vector<string> directories;
-    string prev;
+
     string s;
     for (int i = 1; i < path.size(); i++) {
       if (path[i] == '/') {
@@ -42,33 +43,32 @@ public:
           if (s.size() == 1 && s[0] == '.') {
             s.clear();
             continue;
+          } else if (s == "..") {
+            if (directories.size())
+              directories.pop_back();
+
           } else
             directories.push_back(s);
         }
         s.clear();
-        // } else if (path[i] == '.') {
-        //   if (path[i - 1] == '.')
-        //     if (directories.size())
-        //       directories.pop_back();
-        //     else
-        //       continue;
+
       } else {
         s += path[i];
       }
     }
 
-    vector<string> _directories;
-    for (int i = 0; i < directories.size(); i++)
-      if (directories[i] == "..") {
-        if (_directories.size())
-          _directories.pop_back();
-      } else
-        _directories.push_back((directories[i]));
+    // vector<string> _directories;
+    // for (int i = 0; i < directories.size(); i++)
+    //   if (directories[i] == "..") {
+    //     if (_directories.size())
+    //       _directories.pop_back();
+    //   } else
+    //     _directories.push_back((directories[i]));
 
     string finalPath = "";
-    for (int i = 0; i < _directories.size(); i++) {
+    for (int i = 0; i < directories.size(); i++) {
       finalPath += '/';
-      finalPath += _directories[i];
+      finalPath += directories[i];
     }
     if (finalPath.size() == 0)
       finalPath += '/';
