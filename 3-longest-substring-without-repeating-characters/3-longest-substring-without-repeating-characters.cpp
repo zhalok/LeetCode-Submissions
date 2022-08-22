@@ -62,19 +62,22 @@ public:
 
   int lengthOfLongestSubstring(string s) {
     s = "*" + s;
-    map<char, int> last;
+    int i = 1;
+    int j = 1;
     ll ans = 0;
-    ll temp_ans = 0;
-    for (int i = 1; i < s.size(); i++) {
-      if (last[s[i]] == 0) {
-        temp_ans++;
-        last[s[i]] = i;
+    map<char, int> last;
+    while (j < s.size()) {
+      // cout << j << endl;
+      if (last[s[j]] >= i) {
+        i = last[s[j]] + 1;
+
+        // last[s[j]] = j;
+        ans = maxx(ans, (j - i + 1));
       } else {
-        i = last[s[i]];
-        last.clear();
-        temp_ans = 0;
+        last[s[j]] = j;
+        ans = maxx(ans, j - i + 1);
+        j++;
       }
-      ans = maxx(ans, temp_ans);
     }
     return ans;
   }
