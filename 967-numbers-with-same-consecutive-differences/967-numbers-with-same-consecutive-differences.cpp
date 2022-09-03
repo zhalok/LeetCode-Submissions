@@ -38,7 +38,7 @@ using namespace std;
 
 class Solution {
 public:
-  set<int> vv;
+  vector<int> vv;
   void check(vector<int> v, int n, int k) {
     if (v.size() == n) {
       int num = 0;
@@ -46,7 +46,8 @@ public:
         num *= 10;
         num += x;
       }
-      vv.insert(num);
+      if (vv.size() == 0 || vv.back() != num)
+        vv.push_back(num);
       return;
     }
     int x = v.back();
@@ -68,10 +69,10 @@ public:
       _v.push_back(i);
       check(_v, n, k);
     }
-    vector<int> _vv;
-    for (auto x : vv)
-      _vv.push_back(x);
-    return _vv;
+    // vector<int> _vv;
+    // for (auto x : vv)
+    //   _vv.push_back(x);
+    return vv;
   }
 };
 // int main() {
