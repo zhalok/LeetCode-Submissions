@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <bits/stdc++.h>
+#include <cmath>
 #include <cstddef>
 #include <cstring>
 #include <new>
@@ -39,35 +40,32 @@ using namespace std;
 class Solution {
 public:
   vector<int> vv;
-  void check(vector<int> v, int n, int k) {
-    if (v.size() == n) {
-      int num = 0;
-      for (auto x : v) {
-        num *= 10;
-        num += x;
-      }
+  void check(int num, int n, int k) {
+    int num_size = log10(num) + 1;
+    if (num_size == n) {
       if (vv.size() == 0 || vv.back() != num)
         vv.push_back(num);
       return;
     }
-    int x = v.back();
-    if (x + k <= 9) {
-      v.push_back(x + k);
-      check(v, n, k);
-      v.pop_back();
+    int last_digit = num % 10;
+    if (last_digit + k <= 9) {
+      num *= 10;
+      num += (last_digit + k);
+      check(num, n, k);
+      num /= 10;
     }
-    if (x - k >= 0) {
-      v.push_back(x - k);
-      check(v, n, k);
-      v.pop_back();
+    if (last_digit - k >= 0) {
+      num *= 10;
+      num += (last_digit - k);
+      check(num, n, k);
+      num /= 10;
     }
   }
   vector<int> numsSameConsecDiff(int n, int k) {
     vector<int> _v;
     for (int i = 1; i < 10; i++) {
-      _v.clear();
-      _v.push_back(i);
-      check(_v, n, k);
+
+      check(i, n, k);
     }
     // vector<int> _vv;
     // for (auto x : vv)
