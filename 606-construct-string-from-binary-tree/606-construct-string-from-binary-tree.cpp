@@ -21,7 +21,7 @@ public:
     string val;
     val = to_string(root->val);
     ;
-    if (root->left == NULL && root->right == NULL)
+    if (root->left == NULL and root->right == NULL)
       return val;
       
     if (root->right == NULL)
