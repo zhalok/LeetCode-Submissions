@@ -20,7 +20,7 @@ public:
       return "";
     string val;
     val = to_string(root->val);
-    ;
+
     if (root->left == NULL and root->right == NULL)
       return val;
       
