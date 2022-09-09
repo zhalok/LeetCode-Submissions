@@ -35,27 +35,27 @@ using namespace std;
 
 class Solution {
 
-  int cumsum[200][10001];
+//   int cumsum[200][10001];
 
-  bool check(string s, int len) {
-    int i = 1;
-    int j = len;
-    set<char> ss;
-    while (j < s.size()) {
-      bool flag = true;
-      for (int k = 0; k < 200; k++)
-        if (cumsum[k][j] - cumsum[k][i - 1] > 1) {
-          flag = false;
-          break;
-        }
-      if (flag == true)
-        return true;
+//   bool check(string s, int len) {
+//     int i = 1;
+//     int j = len;
+//     set<char> ss;
+//     while (j < s.size()) {
+//       bool flag = true;
+//       for (int k = 0; k < 200; k++)
+//         if (cumsum[k][j] - cumsum[k][i - 1] > 1) {
+//           flag = false;
+//           break;
+//         }
+//       if (flag == true)
+//         return true;
 
-      i++;
-      j++;
-    }
-    return false;
-  }
+//       i++;
+//       j++;
+//     }
+//     return false;
+//   }
 
 public:
   ll maxx(ll a, ll b) { return (a > b) ? a : b; }
