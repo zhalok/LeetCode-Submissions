@@ -69,7 +69,7 @@ public:
     while (j < s.size()) {
       // cout << j << endl;
       if (last[s[j]] >= i) {
-        i = last[s[j]] + 1;
+        i = last[s[j]] +1;
 
         // last[s[j]] = j;
         ans = maxx(ans, (j - i + 1));
