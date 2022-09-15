@@ -9,9 +9,9 @@ public:
   vector<int> findOriginalArray(vector<int> &changed) {
     sort(changed.begin(), changed.end());
     vector<int> original;
-    map<int, bool> mp;
-    for (int i = 0; i < changed.size(); i++)
-      mp[i] = true;
+
+    bool mp[changed.size()];
+    memset(mp, true, sizeof(mp));
     for (int i = 0; i < changed.size(); i++)
       if (mp[i]) {
         int lo = i + 1;
