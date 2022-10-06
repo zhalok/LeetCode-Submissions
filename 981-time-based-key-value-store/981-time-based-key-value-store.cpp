@@ -18,6 +18,7 @@ public:
 
   string get(string key, int timestamp) {
     while (timestamp) {
+        if(mp.count(key)==0) return "";
       if (mp[key].count(timestamp))
         return mp[key][timestamp];
       timestamp--;
