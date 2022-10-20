@@ -52,18 +52,25 @@ public:
     string ans;
     // sort(vals.begin(), vals.end());
     reverse(vals.begin(), vals.end());
-    while (num) {
-      // for (auto x : int_to_roman) {
-      //   if (x.first <= num) {
-      //     num -= x.first;
-      //     ans += x.second;
-      //   }
-      // }
-      for (int i = 0; i < vals.size(); i++) {
-        while (vals[i] <= num) {
-          num -= vals[i];
-          ans += int_to_roman[vals[i]];
-        }
+    // while (num) {
+    //   // for (auto x : int_to_roman) {
+    //   //   if (x.first <= num) {
+    //   //     num -= x.first;
+    //   //     ans += x.second;
+    //   //   }
+    //   // }
+    //   for (int i = 0; i < vals.size(); i++) {
+    //     if (vals[i] <= num) {
+    //       num -= vals[i];
+    //       ans += int_to_roman[vals[i]];
+
+    //     }
+    //   }
+    // }
+    for (int i = 0; i < vals.size(); i++) {
+      while (num >= vals[i]) {
+        num -= vals[i];
+        ans += int_to_roman[vals[i]];
       }
     }
     return ans;
