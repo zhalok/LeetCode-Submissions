@@ -60,10 +60,9 @@ public:
       //   }
       // }
       for (int i = 0; i < vals.size(); i++) {
-        if (vals[i] <= num) {
+        while (vals[i] <= num) {
           num -= vals[i];
           ans += int_to_roman[vals[i]];
-          break;
         }
       }
     }
