@@ -67,11 +67,22 @@ public:
     //     }
     //   }
     // }
-    for (int i = 0; i < vals.size(); i++) {
-      while (num >= vals[i]) {
-        num -= vals[i];
-        ans += int_to_roman[vals[i]];
+    // cout << vals.size() << endl;
+    while (num) {
+
+      int lo = 0;
+      int hi = vals.size() - 1;
+      int temp_ans = 0;
+      while (lo <= hi) {
+        int mid = (lo + hi) / 2;
+        if (vals[mid] <= num) {
+          temp_ans = vals[mid];
+          hi = mid - 1;
+        } else
+          lo = mid + 1;
       }
+      num -= temp_ans;
+      ans += int_to_roman[temp_ans];
     }
     return ans;
   }
