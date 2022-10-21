@@ -28,14 +28,12 @@ using namespace std;
 class Solution {
 public:
   bool containsNearbyDuplicate(vector<int> &nums, int k) {
-    vector<pair<int, int>> vp;
-    for (int i = 0; i < nums.size(); i++)
-      vp.push_back({nums[i], i});
-    sort(all(vp));
-    for (int i = 0; i < vp.size() - 1; i++)
-      if (vp[i].first == vp[i + 1].first &&
-          abs(vp[i].second - vp[i + 1].second) <= k)
+    map<int, int> idx;
+    for (int i = 0; i < nums.size(); i++) {
+      if (idx[nums[i]] && ((i + 1) - idx[nums[i]] <= k))
         return true;
+      idx[nums[i]] = i + 1;
+    }
     return false;
   }
 };
